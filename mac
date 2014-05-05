@@ -30,6 +30,10 @@ fi
 fancy_echo() {
   printf "\n%b\n" "$1"
 }
+
+brew_install() {
+  brew install $1 || brew update $1
+}
 ### end common-components/shared-functions
 
 fancy_echo "Changing your shell to zsh ..."
