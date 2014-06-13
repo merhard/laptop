@@ -37,7 +37,7 @@ fancy_echo "Changing your shell to zsh ..."
 ### end common-components/zsh
 
 brew_install() {
-  if ! brew list -1 | grep -q '^'"$1"'\$'; then
+  if brew list -1 | grep -Fqx "$1"; then
     (brew upgrade $@) || echo ''
   else
     brew install $@
@@ -103,7 +103,7 @@ node_version = "0.10.28"
 
 if ! command -v nvm &>/dev/null; then
   fancy_echo "Installing NVM, Node.js, and NPM, for running apps and installing JavaScript packages ..."
-    brew install nvm
+    brew_install 'nvm'
     printf 'export PATH="$PATH:/usr/local/lib/node_modules"\n' >> ~/.zshrc
     printf 'source $(brew --prefix nvm)/nvm.sh\n' >> ~/.zshrc
 
