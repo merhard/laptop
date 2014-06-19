@@ -1,0 +1,10 @@
+fancy_echo "Installing chruby, to change Ruby versions ..."
+  brew install chruby
+
+  if ! grep -qs "chruby" ~/.zshrc; then
+    printf 'source /usr/local/share/chruby/chruby.sh\n' >> ~/.zshrc
+    printf 'source /usr/local/share/chruby/auto.sh\n' >> ~/.zshrc
+  fi
+
+fancy_echo "Installing ruby-install, to install Rubies ..."
+  brew install ruby-install

@@ -1,0 +1,16 @@
+ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
+
+fancy_echo "Installing Ruby $ruby_version ..."
+  ruby-install ruby "$ruby_version"
+
+fancy_echo "Setting $ruby_version as default Ruby ..."
+  if [ ! -f "$HOME/.ruby-version" ]; then
+    touch $HOME/.ruby-version
+  fi
+  printf 'ruby-$ruby_version\n' >> ~/.ruby-version
+
+fancy_echo "Updating to latest Rubygems version ..."
+  gem update --system
+
+fancy_echo "Installing Bundler to install project-specific Ruby gems ..."
+  gem install bundler --no-document --pre
